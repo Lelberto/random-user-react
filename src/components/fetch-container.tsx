@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import { Button, Container, FormControl, InputGroup, Modal } from 'react-bootstrap';
+import { Button, Container, FormControl, InputGroup } from 'react-bootstrap';
 import { UserData, UserResponse } from '../types/data';
 import { UserDetailsModal } from './user-details-modal';
 import { UsersTable } from './users-table';
@@ -10,7 +10,7 @@ export const FetchContainer: React.FC = () => {
     const [users, setUsers] = useState<UserData[]>([]);
     const [count, setCount] = useState(5);
     const [filter, setFilter] = useState('');
-    const [selectedUser, setSelectedUser] = useState<UserData>(null);
+    const [selectedUser, setSelectedUser] = useState<UserData>(null as any);
     const [userDetailsModalShow, setUserDetailsModalShow] = useState(false);
 
     useEffect(() => {

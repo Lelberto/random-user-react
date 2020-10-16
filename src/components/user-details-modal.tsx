@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Badge, Button, Image, ListGroup, Modal } from 'react-bootstrap'
-import { List } from 'react-bootstrap/lib/Media';
 import { UserData } from '../types/data'
 
 export interface UserDetailsModalProps {

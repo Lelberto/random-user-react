@@ -35,7 +35,7 @@ export const UsersTable: React.FC<UsersTableProps> = ({ users, onSelect, onTicta
                 <td onClick={() => onSelect(user)}>{user.dob.age}</td>
                 <td>
                     <Button variant="success" onClick={() => onTictactoeXSelect(user)}>TicTacToe (X)</Button>
-                    <Button className="ml-1" variant="success" onClick={() => onTictactoeOSelect(user)}>TicTacToe(O)</Button>
+                    <Button className="ml-1" variant="success" onClick={() => onTictactoeOSelect(user)}>TicTacToe (O)</Button>
                 </td>
             </tr>
         ))}

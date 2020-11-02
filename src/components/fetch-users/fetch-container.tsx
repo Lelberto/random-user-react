@@ -60,6 +60,12 @@ export const FetchContainer: React.FC = () => {
 
     return (
         <Container className="mt-5">
+            <h1>Fetch users X TicTacToe - Ynov/React</h1>
+            <p>
+                Bon, j'ai pas focus le design...
+                Par contre j'ai fusionné le TicTacToe avec ce projet. Il suffit de sélectionner un utilisateur pour les X, un pour les O,
+                et cliquer sur le bouton "Go to TicTacToe" qui s'affichera sous ce texte ☺.
+            </p>
             {userContext.currentUserX != null && userContext.currentUserO != null ? (<Link to="/tictactoe">Go to TicTacToe</Link>) : <></>}
             <InputGroup>
                 <InputGroup.Prepend>

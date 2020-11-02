@@ -1,6 +1,6 @@
 import React from 'react'
 import { Badge, Button, Image, ListGroup, Modal } from 'react-bootstrap'
-import { UserData } from '../types/data'
+import { UserData } from '../../types/fetch-users-data'
 
 export interface UserDetailsModalProps {
     show: boolean;

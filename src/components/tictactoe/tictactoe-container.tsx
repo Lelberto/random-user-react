@@ -1,28 +1,29 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Container } from 'react-bootstrap'
-import { CellType } from '../../types/tictactoe-data';
+import { Link } from 'react-router-dom';
+import UserContext from '../../contexts/user-context';
 import { TictactoeCase as TictactoeCell } from './tictactoe-cell'
 
 export const TictactoeContainer: React.FC = () => {
-    const [char, setChar] = useState('x');
-    const [cell0, setCell0] = useState<CellType>('');
-    const [cell1, setCell1] = useState<CellType>('');
-    const [cell2, setCell2] = useState<CellType>('');
-    const [cell3, setCell3] = useState<CellType>('');
-    const [cell4, setCell4] = useState<CellType>('');
-    const [cell5, setCell5] = useState<CellType>('');
-    const [cell6, setCell6] = useState<CellType>('');
-    const [cell7, setCell7] = useState<CellType>('');
-    const [cell8, setCell8] = useState<CellType>('');
+    const userContext = useContext(UserContext);
+    const [char, setChar] = useState(userContext.currentUserX.picture.thumbnail);
+    const [cell0, setCell0] = useState<string>('');
+    const [cell1, setCell1] = useState<string>('');
+    const [cell2, setCell2] = useState<string>('');
+    const [cell3, setCell3] = useState<string>('');
+    const [cell4, setCell4] = useState<string>('');
+    const [cell5, setCell5] = useState<string>('');
+    const [cell6, setCell6] = useState<string>('');
+    const [cell7, setCell7] = useState<string>('');
+    const [cell8, setCell8] = useState<string>('');
 
     useEffect(() => {
-        console.log(cell0, cell1, cell2, cell3, cell4, cell5, cell6, cell7, cell8);
-        checkWin('x');
-        checkWin('o');
+        checkWin(userContext.currentUserX.picture.thumbnail);
+        checkWin(userContext.currentUserO.picture.thumbnail);
     }, [cell0, cell1, cell2, cell3, cell4, cell5, cell6, cell7, cell8]);
 
     const handlePlace = (id: number) => {
-        const placeChar = char === 'x' ? 'x' : 'o';
+        const placeChar = char === userContext.currentUserX.picture.thumbnail ? userContext.currentUserX.picture.thumbnail : userContext.currentUserO.picture.thumbnail;
         switch (id) {
             case 0:
                 setCell0(placeChar);
@@ -55,10 +56,10 @@ export const TictactoeContainer: React.FC = () => {
                 console.error('Unknown cell ID');
                 break;
         }
-        setChar(placeChar === 'x' ? 'o' : 'x');
+        setChar(placeChar === userContext.currentUserX.picture.thumbnail ? userContext.currentUserO.picture.thumbnail : userContext.currentUserX.picture.thumbnail);
     }
 
-    const checkWin = (cell: CellType) => {
+    const checkWin = (cell: string) => {
         if ((cell0 === cell && cell1 === cell && cell2 === cell)
             || (cell3 === cell && cell4 === cell && cell5 === cell)
             || (cell6 === cell && cell7 === cell && cell8 === cell)
@@ -68,16 +69,21 @@ export const TictactoeContainer: React.FC = () => {
             || (cell0 === cell && cell4 === cell && cell8 === cell)
             || (cell2 === cell && cell4 === cell && cell6 === cell)
             ) {
-                alert(`${cell} wins !`);
+                if (cell === userContext.currentUserX.picture.thumbnail) {
+                    alert(`${userContext.currentUserX.name.first} ${userContext.currentUserX.name.last} wins !`);
+                } else {
+                    alert(`${userContext.currentUserO.name.first} ${userContext.currentUserO.name.last} wins !`);
+                }
         }
     }
 
-    const isWritable = (cell: CellType) => {
+    const isWritable = (cell: string) => {
         return cell === '';
     }
 
     return (
         <Container className=" mt-5 d-flex justify-content-center">
+            <Link to="/">return to fetch users</Link>
             <table>
                 <tbody>
                     <tr>

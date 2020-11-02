@@ -1,13 +1,15 @@
 import React from 'react';
-import { Image, Table } from 'react-bootstrap';
-import { UserData } from '../types/data';
+import { Button, Image, Table } from 'react-bootstrap';
+import { UserData } from '../../types/fetch-users-data';
 
 export interface UsersTableProps {
     users: UserData[];
     onSelect: (user: UserData) => void;
+    onTictactoeXSelect: (user: UserData) => void;
+    onTictactoeOSelect: (user: UserData) => void;
 }
 
-export const UsersTable: React.FC<UsersTableProps> = ({ users, onSelect }) => (
+export const UsersTable: React.FC<UsersTableProps> = ({ users, onSelect, onTictactoeXSelect, onTictactoeOSelect }) => (
     <Table striped bordered hover>
         <thead>
             <tr>
@@ -18,6 +20,7 @@ export const UsersTable: React.FC<UsersTableProps> = ({ users, onSelect }) => (
                 <th>Adresse mail</th>
                 <th>Téléphone</th>
                 <th>Âge</th>
+                <th>TicTacToe</th>
             </tr>
         </thead>
         <tbody>
@@ -30,6 +33,10 @@ export const UsersTable: React.FC<UsersTableProps> = ({ users, onSelect }) => (
                 <td onClick={() => onSelect(user)}>{user.email}</td>
                 <td onClick={() => onSelect(user)}>{user.phone}</td>
                 <td onClick={() => onSelect(user)}>{user.dob.age}</td>
+                <td>
+                    <Button variant="success" onClick={() => onTictactoeXSelect(user)}>TicTacToe (X)</Button>
+                    <Button className="ml-1" variant="success" onClick={() => onTictactoeOSelect(user)}>TicTacToe(O)</Button>
+                </td>
             </tr>
         ))}
         </tbody>

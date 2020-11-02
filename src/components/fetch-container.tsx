@@ -17,10 +17,6 @@ export const FetchContainer: React.FC = () => {
         axios.get<UserResponse>('https://randomuser.me/api/?results=5').then((res => {
             setUsers([...users, ...res.data.results]);
         })).catch(console.error);
-
-        axios.get<UserResponse>('https://randomuser.me/api/?results=5').then((res => {
-            setUsers(prevState => [...prevState, ...res.data.results]);
-        })).catch(console.error);
     }, []);
 
     const handleFetch = async () => {
